@@ -23,6 +23,23 @@
 		563745A51654332400C55FC9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 563745801654332400C55FC9 /* Foundation.framework */; };
 		563745AD1654332400C55FC9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 563745AB1654332400C55FC9 /* InfoPlist.strings */; };
 		563745B01654332400C55FC9 /* LiveQuakeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 563745AF1654332400C55FC9 /* LiveQuakeTests.m */; };
+		563745C31654360E00C55FC9 /* GeoEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 563745BA1654360E00C55FC9 /* GeoEvent.m */; };
+		563745C41654360E00C55FC9 /* GeoEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 563745BC1654360E00C55FC9 /* GeoEventCell.m */; };
+		563745C51654360E00C55FC9 /* GeoEventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 563745BE1654360E00C55FC9 /* GeoEventsViewController.m */; };
+		563745C61654360E00C55FC9 /* Predicates.m in Sources */ = {isa = PBXBuildFile; fileRef = 563745C01654360E00C55FC9 /* Predicates.m */; };
+		563745C71654360E00C55FC9 /* USGSMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 563745C21654360E00C55FC9 /* USGSMonitor.m */; };
+		563745DC165436BE00C55FC9 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 563745CA165436BE00C55FC9 /* AFHTTPClient.m */; };
+		563745DD165436BE00C55FC9 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 563745CC165436BE00C55FC9 /* AFHTTPRequestOperation.m */; };
+		563745DE165436BE00C55FC9 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 563745CE165436BE00C55FC9 /* AFImageRequestOperation.m */; };
+		563745DF165436BE00C55FC9 /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 563745D0165436BE00C55FC9 /* AFJSONRequestOperation.m */; };
+		563745E0165436BE00C55FC9 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 563745D2165436BE00C55FC9 /* AFNetworkActivityIndicatorManager.m */; };
+		563745E1165436BE00C55FC9 /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 563745D5165436BE00C55FC9 /* AFPropertyListRequestOperation.m */; };
+		563745E2165436BE00C55FC9 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 563745D7165436BE00C55FC9 /* AFURLConnectionOperation.m */; };
+		563745E3165436BE00C55FC9 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 563745D9165436BE00C55FC9 /* AFXMLRequestOperation.m */; };
+		563745E4165436BE00C55FC9 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 563745DB165436BE00C55FC9 /* UIImageView+AFNetworking.m */; };
+		563745E61654379800C55FC9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 563745E51654379800C55FC9 /* CoreLocation.framework */; };
+		563745E8165437A000C55FC9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 563745E7165437A000C55FC9 /* MapKit.framework */; };
+		563745EB165437FE00C55FC9 /* EventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 563745EA165437FE00C55FC9 /* EventDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +75,39 @@
 		563745AC1654332400C55FC9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		563745AE1654332400C55FC9 /* LiveQuakeTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveQuakeTests.h; sourceTree = "<group>"; };
 		563745AF1654332400C55FC9 /* LiveQuakeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveQuakeTests.m; sourceTree = "<group>"; };
+		563745B91654360E00C55FC9 /* GeoEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeoEvent.h; path = ../GeoEvent.h; sourceTree = "<group>"; };
+		563745BA1654360E00C55FC9 /* GeoEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GeoEvent.m; path = ../GeoEvent.m; sourceTree = "<group>"; };
+		563745BB1654360E00C55FC9 /* GeoEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeoEventCell.h; path = ../GeoEventCell.h; sourceTree = "<group>"; };
+		563745BC1654360E00C55FC9 /* GeoEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GeoEventCell.m; path = ../GeoEventCell.m; sourceTree = "<group>"; };
+		563745BD1654360E00C55FC9 /* GeoEventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeoEventsViewController.h; path = ../GeoEventsViewController.h; sourceTree = "<group>"; };
+		563745BE1654360E00C55FC9 /* GeoEventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GeoEventsViewController.m; path = ../GeoEventsViewController.m; sourceTree = "<group>"; };
+		563745BF1654360E00C55FC9 /* Predicates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Predicates.h; path = ../Predicates.h; sourceTree = "<group>"; };
+		563745C01654360E00C55FC9 /* Predicates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Predicates.m; path = ../Predicates.m; sourceTree = "<group>"; };
+		563745C11654360E00C55FC9 /* USGSMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = USGSMonitor.h; path = ../USGSMonitor.h; sourceTree = "<group>"; };
+		563745C21654360E00C55FC9 /* USGSMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = USGSMonitor.m; path = ../USGSMonitor.m; sourceTree = "<group>"; };
+		563745C9165436BE00C55FC9 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
+		563745CA165436BE00C55FC9 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
+		563745CB165436BE00C55FC9 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		563745CC165436BE00C55FC9 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		563745CD165436BE00C55FC9 /* AFImageRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFImageRequestOperation.h; sourceTree = "<group>"; };
+		563745CE165436BE00C55FC9 /* AFImageRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFImageRequestOperation.m; sourceTree = "<group>"; };
+		563745CF165436BE00C55FC9 /* AFJSONRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFJSONRequestOperation.h; sourceTree = "<group>"; };
+		563745D0165436BE00C55FC9 /* AFJSONRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFJSONRequestOperation.m; sourceTree = "<group>"; };
+		563745D1165436BE00C55FC9 /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
+		563745D2165436BE00C55FC9 /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
+		563745D3165436BE00C55FC9 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		563745D4165436BE00C55FC9 /* AFPropertyListRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFPropertyListRequestOperation.h; sourceTree = "<group>"; };
+		563745D5165436BE00C55FC9 /* AFPropertyListRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFPropertyListRequestOperation.m; sourceTree = "<group>"; };
+		563745D6165436BE00C55FC9 /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		563745D7165436BE00C55FC9 /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
+		563745D8165436BE00C55FC9 /* AFXMLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFXMLRequestOperation.h; sourceTree = "<group>"; };
+		563745D9165436BE00C55FC9 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
+		563745DA165436BE00C55FC9 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
+		563745DB165436BE00C55FC9 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		563745E51654379800C55FC9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		563745E7165437A000C55FC9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		563745E9165437FE00C55FC9 /* EventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventDetailViewController.h; path = ../../../../Dropbox/TestOne/EventDetailViewController.h; sourceTree = "<group>"; };
+		563745EA165437FE00C55FC9 /* EventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventDetailViewController.m; path = ../../../../Dropbox/TestOne/EventDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +115,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				563745E8165437A000C55FC9 /* MapKit.framework in Frameworks */,
+				563745E61654379800C55FC9 /* CoreLocation.framework in Frameworks */,
 				5637457F1654332400C55FC9 /* UIKit.framework in Frameworks */,
 				563745811654332400C55FC9 /* Foundation.framework in Frameworks */,
 				563745831654332400C55FC9 /* CoreGraphics.framework in Frameworks */,
@@ -87,6 +139,9 @@
 		5637456F1654332300C55FC9 = {
 			isa = PBXGroup;
 			children = (
+				563745E7165437A000C55FC9 /* MapKit.framework */,
+				563745E51654379800C55FC9 /* CoreLocation.framework */,
+				563745C8165436BE00C55FC9 /* AFNetworking */,
 				563745841654332400C55FC9 /* LiveQuake */,
 				563745A81654332400C55FC9 /* LiveQuakeTests */,
 				5637457D1654332300C55FC9 /* Frameworks */,
@@ -117,6 +172,18 @@
 		563745841654332400C55FC9 /* LiveQuake */ = {
 			isa = PBXGroup;
 			children = (
+				563745B91654360E00C55FC9 /* GeoEvent.h */,
+				563745BA1654360E00C55FC9 /* GeoEvent.m */,
+				563745BB1654360E00C55FC9 /* GeoEventCell.h */,
+				563745BC1654360E00C55FC9 /* GeoEventCell.m */,
+				563745BD1654360E00C55FC9 /* GeoEventsViewController.h */,
+				563745BE1654360E00C55FC9 /* GeoEventsViewController.m */,
+				563745BF1654360E00C55FC9 /* Predicates.h */,
+				563745C01654360E00C55FC9 /* Predicates.m */,
+				563745C11654360E00C55FC9 /* USGSMonitor.h */,
+				563745C21654360E00C55FC9 /* USGSMonitor.m */,
+				563745E9165437FE00C55FC9 /* EventDetailViewController.h */,
+				563745EA165437FE00C55FC9 /* EventDetailViewController.m */,
 				5637458D1654332400C55FC9 /* AppDelegate.h */,
 				5637458E1654332400C55FC9 /* AppDelegate.m */,
 				563745961654332400C55FC9 /* MainStoryboard.storyboard */,
@@ -158,6 +225,32 @@
 				563745AB1654332400C55FC9 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		563745C8165436BE00C55FC9 /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				563745C9165436BE00C55FC9 /* AFHTTPClient.h */,
+				563745CA165436BE00C55FC9 /* AFHTTPClient.m */,
+				563745CB165436BE00C55FC9 /* AFHTTPRequestOperation.h */,
+				563745CC165436BE00C55FC9 /* AFHTTPRequestOperation.m */,
+				563745CD165436BE00C55FC9 /* AFImageRequestOperation.h */,
+				563745CE165436BE00C55FC9 /* AFImageRequestOperation.m */,
+				563745CF165436BE00C55FC9 /* AFJSONRequestOperation.h */,
+				563745D0165436BE00C55FC9 /* AFJSONRequestOperation.m */,
+				563745D1165436BE00C55FC9 /* AFNetworkActivityIndicatorManager.h */,
+				563745D2165436BE00C55FC9 /* AFNetworkActivityIndicatorManager.m */,
+				563745D3165436BE00C55FC9 /* AFNetworking.h */,
+				563745D4165436BE00C55FC9 /* AFPropertyListRequestOperation.h */,
+				563745D5165436BE00C55FC9 /* AFPropertyListRequestOperation.m */,
+				563745D6165436BE00C55FC9 /* AFURLConnectionOperation.h */,
+				563745D7165436BE00C55FC9 /* AFURLConnectionOperation.m */,
+				563745D8165436BE00C55FC9 /* AFXMLRequestOperation.h */,
+				563745D9165436BE00C55FC9 /* AFXMLRequestOperation.m */,
+				563745DA165436BE00C55FC9 /* UIImageView+AFNetworking.h */,
+				563745DB165436BE00C55FC9 /* UIImageView+AFNetworking.m */,
+			);
+			path = AFNetworking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +366,21 @@
 				5637458B1654332400C55FC9 /* main.m in Sources */,
 				5637458F1654332400C55FC9 /* AppDelegate.m in Sources */,
 				5637459B1654332400C55FC9 /* ViewController.m in Sources */,
+				563745C31654360E00C55FC9 /* GeoEvent.m in Sources */,
+				563745C41654360E00C55FC9 /* GeoEventCell.m in Sources */,
+				563745C51654360E00C55FC9 /* GeoEventsViewController.m in Sources */,
+				563745C61654360E00C55FC9 /* Predicates.m in Sources */,
+				563745C71654360E00C55FC9 /* USGSMonitor.m in Sources */,
+				563745DC165436BE00C55FC9 /* AFHTTPClient.m in Sources */,
+				563745DD165436BE00C55FC9 /* AFHTTPRequestOperation.m in Sources */,
+				563745DE165436BE00C55FC9 /* AFImageRequestOperation.m in Sources */,
+				563745DF165436BE00C55FC9 /* AFJSONRequestOperation.m in Sources */,
+				563745E0165436BE00C55FC9 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				563745E1165436BE00C55FC9 /* AFPropertyListRequestOperation.m in Sources */,
+				563745E2165436BE00C55FC9 /* AFURLConnectionOperation.m in Sources */,
+				563745E3165436BE00C55FC9 /* AFXMLRequestOperation.m in Sources */,
+				563745E4165436BE00C55FC9 /* UIImageView+AFNetworking.m in Sources */,
+				563745EB165437FE00C55FC9 /* EventDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
