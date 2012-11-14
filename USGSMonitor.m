@@ -49,10 +49,10 @@ static NSString *fileName   = NULL;
         AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
             
 			// Check the returned object
-			if([JSON respondsToSelector:@selector(messageIWishToSend)]){
+			if([JSON respondsToSelector:@selector(objectForKey:)]){
 				id innerJSON = [JSON objectForKey:@"features"];
-				// Again, check that we have an NSDictionary
-				if ([innerJSON isMemberOfClass:[NSDictionary class]]){
+				// TODO: Check that we have an NSDictionary
+				if ([innerJSON isKindOfClass:[NSObject class]]){
                     
                     
                     

@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 #define USGS_UPDATE @"USGS_UPDATE"
-#define USGS_URL @"http://earthquake.usgs.gov/earthquakes/feed/geojson/all/hour"
-//#define USGS_URL @"http://earthquake.usgs.gov/earthquakes/feed/geojson/2.5/day"
+//#define USGS_URL @"http://earthquake.usgs.gov/earthquakes/feed/geojson/all/hour"
+#define USGS_URL @"http://earthquake.usgs.gov/earthquakes/feed/geojson/2.5/day"
 
 @interface USGSMonitor : NSObject
 + (void) startMonitor;
