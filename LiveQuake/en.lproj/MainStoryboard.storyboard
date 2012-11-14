@@ -29,31 +29,59 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="fhI-LS-lQ4">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="455" id="JoY-26-RsF"/>
-                                </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="fUs-jL-OiV">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="fUs-jL-OiV" customClass="GeoEventCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJt-kG-tpg">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="78" id="DtA-0I-0qj"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxh-Z0-SbZ">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="uxh-Z0-SbZ" firstAttribute="leading" secondItem="fUs-jL-OiV" secondAttribute="leading" constant="20" type="default" id="94X-TO-JE0"/>
+                                            <constraint firstItem="MJt-kG-tpg" firstAttribute="leading" secondItem="fUs-jL-OiV" secondAttribute="leading" constant="20" type="default" id="KU9-Vs-cKw"/>
+                                            <constraint firstItem="uxh-Z0-SbZ" firstAttribute="top" secondItem="fUs-jL-OiV" secondAttribute="top" constant="20" type="default" id="Tbc-iP-6CH"/>
+                                            <constraint firstItem="MJt-kG-tpg" firstAttribute="top" secondItem="fUs-jL-OiV" secondAttribute="top" type="default" id="bCE-K5-eQS"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="magnitudeLabel" destination="uxh-Z0-SbZ" id="7yT-av-dVr"/>
+                                            <outlet property="placeLabel" destination="MJt-kG-tpg" id="ujv-4y-SyB"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="I37-t8-6Vj" id="95i-Op-kUT"/>
+                                    <outlet property="delegate" destination="I37-t8-6Vj" id="BxM-sX-re3"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="fhI-LS-lQ4" firstAttribute="bottom" secondItem="zFs-9j-ByA" secondAttribute="bottom" type="default" id="1cf-qZ-PAD"/>
                             <constraint firstItem="fhI-LS-lQ4" firstAttribute="leading" secondItem="zFs-9j-ByA" secondAttribute="leading" type="default" id="Lgc-Sf-qt4"/>
-                            <constraint firstItem="fhI-LS-lQ4" firstAttribute="top" secondItem="zFs-9j-ByA" secondAttribute="top" constant="38" id="eyf-DR-1Jb"/>
                             <constraint firstItem="fhI-LS-lQ4" firstAttribute="trailing" secondItem="zFs-9j-ByA" secondAttribute="trailing" type="default" id="vdu-Tq-FUc"/>
+                            <constraint firstItem="fhI-LS-lQ4" firstAttribute="top" secondItem="zFs-9j-ByA" secondAttribute="top" type="default" id="xvP-pD-EMd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kpm-0O-3u8"/>
                     <connections>
+                        <outlet property="view" destination="fhI-LS-lQ4" id="TQa-75-Xe1"/>
                         <segue destination="coF-mN-ORr" kind="push" identifier="showEventDetail" id="p9m-ad-zFn"/>
                     </connections>
                 </viewController>
@@ -92,7 +120,7 @@
         <scene sceneID="K48-o4-O8F">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="YMZ-Du-lJG" sceneMemberID="viewController">
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Naf-Pu-4fh">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -132,6 +160,13 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EventDetailViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+        <class className="GeoEventCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GeoEventCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="magnitudeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="placeLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="GeoEventsViewController" superclassName="UITableViewController">
