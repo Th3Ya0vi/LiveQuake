@@ -64,6 +64,7 @@
                                 <connections>
                                     <outlet property="magnitudeLabel" destination="5Gj-xx-jhL" id="dAX-vS-JHg"/>
                                     <outlet property="placeLabel" destination="o7R-ca-leS" id="BWb-UE-4d6"/>
+                                    <segue destination="coF-mN-ORr" kind="push" identifier="showEventDetail" id="Y57-At-jgu"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -82,10 +83,14 @@
                                 <action selector="segmentChanged:" destination="I37-t8-6Vj" eventType="valueChanged" id="kIL-kD-hgc"/>
                             </connections>
                         </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="pQd-eR-EjB">
+                            <connections>
+                                <action selector="refresh:" destination="I37-t8-6Vj" id="wTc-2w-LkH"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="segmentedControl" destination="xxu-Z2-eKb" id="geg-AK-WQy"/>
-                        <segue destination="coF-mN-ORr" kind="push" identifier="showEventDetail" id="p9m-ad-zFn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SFN-l6-a8U" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -176,6 +181,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GeoEventsViewController.h"/>
             <relationships>
                 <relationship kind="action" name="button:"/>
+                <relationship kind="action" name="refersh:"/>
                 <relationship kind="action" name="segmentChanged:"/>
                 <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
             </relationships>

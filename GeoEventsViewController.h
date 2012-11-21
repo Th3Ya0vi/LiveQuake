@@ -21,5 +21,6 @@
 
 - (IBAction)button:(id)sender;
 - (IBAction)segmentChanged:(id)sender;
+- (IBAction)refresh:(id)sender;
 
 @end

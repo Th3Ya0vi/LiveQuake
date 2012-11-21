@@ -10,13 +10,11 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 
-@interface GeoEvent : NSObject <MKAnnotation>
+@interface GeoEvent : NSObject <MKAnnotation, NSCoding>
 
 @property(nonatomic, copy) NSString *place;
 @property(nonatomic, assign) int mag;
 @property(nonatomic, readonly) CLLocationCoordinate2D coordinate;
-@property(nonatomic, readonly) NSString *title;
-@property(nonatomic, readonly) NSString *subTitle;
 
 -(id)initWithPlace:(NSString*) place magnitude:(int) mag longitude:(float) longitude andLatitude:(float) latitude;
 

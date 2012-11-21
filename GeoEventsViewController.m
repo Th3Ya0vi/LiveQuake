@@ -202,6 +202,10 @@
     }
 }
 
+- (IBAction)refresh:(id)sender {
+    NSLog(@"Refresh button");
+}
+
 - (void)locationManager:(CLLocationManager *)manager
 	didUpdateToLocation:(CLLocation *)newLocation
 		   fromLocation:(CLLocation *)oldLocation{

@@ -9,6 +9,7 @@
 #import "USGSMonitor.h"
 #import "AFJSONRequestOperation.h"
 #import "GeoEvent.h"
+#import <objc/runtime.h>
 
 static NSThread *monitor    = NULL;
 static NSArray  *geoEvents      = NULL;
@@ -22,12 +23,13 @@ static NSString *fileName   = NULL;
 
 +(NSArray*)getCachedCopy{
     // NSDictionary back from the stored NSData
-    NSData *data = [NSData dataWithContentsOfFile:fileName];
-    //    NSString *feedXML = [[[NSString alloc] initWithData:data encoding:NSStringEncodingConversionAllowLossy] autorelease];
-    //    if(feedXML){
-    //        return [self parseXML:feedXML];
-    //    }
-    return nil;
+    NSData *codedData = [NSData dataWithContentsOfFile:fileName];
+    if (codedData == nil) return nil;
+    
+    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:codedData];
+    NSLog(@"%@", [NSString stringWithCString:class_getName([[unarchiver decodeObjectForKey:@"events"] class]) encoding:NSUTF8StringEncoding]);
+    
+    return [unarchiver decodeObjectForKey:@"events"];
 }
 
 +(void)keepMonitoring{
@@ -37,7 +39,7 @@ static NSString *fileName   = NULL;
             geoEvents = [self getCachedCopy];
             NSDate *modificationDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:fileName error:nil] objectForKey:NSFileModificationDate];
             if(geoEvents){
-                NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:geoEvents, @"spots", modificationDate, @"date", nil];
+                NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:geoEvents, @"events", modificationDate, @"date", nil];
                 [[NSNotificationCenter defaultCenter] postNotificationName:USGS_UPDATE object:dict];
             }
         }
@@ -47,16 +49,14 @@ static NSString *fileName   = NULL;
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         
         AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-            
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = false;
+            NSLog(@"%@", [NSString stringWithCString:class_getName([JSON class]) encoding:NSUTF8StringEncoding]);
 			// Check the returned object
 			if([JSON respondsToSelector:@selector(objectForKey:)]){
 				id innerJSON = [JSON objectForKey:@"features"];
-				// TODO: Check that we have an NSDictionary
-				if ([innerJSON isKindOfClass:[NSObject class]]){
-                    
-                    
-                    
-                    
+				// Check that we have an NSArray
+                NSLog(@"%@", [NSString stringWithCString:class_getName([innerJSON class]) encoding:NSUTF8StringEncoding]);
+				if ([innerJSON isKindOfClass:[NSArray class]]){
                     NSArray *places = [JSON valueForKeyPath:@"features.properties.place"];
                     NSLog(@"Places: %@", places);
                     
@@ -78,6 +78,7 @@ static NSString *fileName   = NULL;
                         
                         NSString *place = [attributes valueForKeyPath: @"properties.place"];
                         NSLog(@"place: %@", place);
+                        NSLog(@"magnitude: %@", [attributes valueForKeyPath: @"properties.mag"]);
                         int mag = [[attributes valueForKeyPath: @"properties.mag"] intValue];
                         
                         GeoEvent *event = [[GeoEvent alloc] initWithPlace: place magnitude:mag longitude:longitude andLatitude:latitude];
@@ -91,6 +92,12 @@ static NSString *fileName   = NULL;
                         NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:geoEvents, @"events", [NSDate date], @"date", nil];
                         
                         // -> NSData and write to file (only the events)
+                        
+                        NSMutableData *data = [[NSMutableData alloc]init];
+                        NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc]initForWritingWithMutableData:data];
+                        [archiver encodeObject:geoEvents forKey: @"events"];
+                        [archiver finishEncoding];
+                        [data writeToFile:fileName atomically:YES];
                         
                         [[NSNotificationCenter defaultCenter] postNotificationName:USGS_UPDATE object:dict];
                     }
@@ -108,6 +115,7 @@ static NSString *fileName   = NULL;
 
 +(void) startMonitor{
     fileName = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/feed.xml"];
+    NSLog(@"fileName: %@", fileName);
     if(monitor == NULL){
         NSLog(@"Starting monitor");
         monitor = [[NSThread  alloc] initWithTarget:self selector:@selector(keepMonitoring) object:nil];
