@@ -58,12 +58,7 @@ static NSString *fileName   = NULL;
                 NSLog(@"%@", [NSString stringWithCString:class_getName([innerJSON class]) encoding:NSUTF8StringEncoding]);
 				if ([innerJSON isKindOfClass:[NSArray class]]){
                     NSArray *places = [JSON valueForKeyPath:@"features.properties.place"];
-                    NSLog(@"Places: %@", places);
-                    
-                    //             if(places != nil){
-                    //                [places writeToFile:fileName  atomically:YES encoding:NSStringEncodingConversionAllowLossy error:nil];
-                    //            }
-                    
+                    NSLog(@"Places: %@", places);                  
                     NSMutableArray *mutableItems = [NSMutableArray arrayWithCapacity:[innerJSON count]];
                     for (NSDictionary *attributes in innerJSON) {
                         //NSLog(@"Attribute: %@", attributes);
@@ -91,8 +86,7 @@ static NSString *fileName   = NULL;
                         geoEvents = mutableItems;
                         NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:geoEvents, @"events", [NSDate date], @"date", nil];
                         
-                        // -> NSData and write to file (only the events)
-                        
+                        // Write to file the geoEvents (not the dictionary with also the date)                        
                         NSMutableData *data = [[NSMutableData alloc]init];
                         NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc]initForWritingWithMutableData:data];
                         [archiver encodeObject:geoEvents forKey: @"events"];
@@ -128,6 +122,44 @@ static NSString *fileName   = NULL;
         [monitor cancel];
         monitor = NULL;
     }
+}
+
+#pragma mark - USGS Parser
+
++(NSArray*)parseUSGS:(id)JSON{
+	if([JSON respondsToSelector:@selector(objectForKey:)]){
+		id innerJSON = [JSON objectForKey:@"features"];
+		// Check that we have an NSArray
+		NSLog(@"%@", [NSString stringWithCString:class_getName([innerJSON class]) encoding:NSUTF8StringEncoding]);
+		if ([innerJSON isKindOfClass:[NSArray class]]){
+			NSArray *places = [JSON valueForKeyPath:@"features.properties.place"];
+			NSLog(@"Places: %@", places);                  
+			NSMutableArray *mutableItems = [NSMutableArray arrayWithCapacity:[innerJSON count]];
+			for (NSDictionary *attributes in innerJSON) {
+				//NSLog(@"Attribute: %@", attributes);
+				NSLog(@"coordinates: %@", [attributes valueForKeyPath: @"geometry.coordinates"]);
+				NSArray *coordinates = [attributes valueForKeyPath: @"geometry.coordinates"];
+				float longitude = [[coordinates objectAtIndex:0] floatValue];
+				float latitude = [[coordinates objectAtIndex:1] floatValue];
+				float depth = [[coordinates objectAtIndex:2] floatValue];
+				NSLog(@"longitude: %f", longitude);
+				NSLog(@"latitude: %f", latitude);
+				NSLog(@"depth: %f", depth);
+				
+				NSString *place = [attributes valueForKeyPath: @"properties.place"];
+				NSLog(@"place: %@", place);
+				NSLog(@"magnitude: %@", [attributes valueForKeyPath: @"properties.mag"]);
+				int mag = [[attributes valueForKeyPath: @"properties.mag"] intValue];
+				
+				GeoEvent *event = [[GeoEvent alloc] initWithPlace: place magnitude:mag longitude:longitude andLatitude:latitude];
+				event.mag = mag;
+				
+				[mutableItems addObject:event];
+			}
+			return mutableItems;
+		}
+	}
+	else return nil;
 }
 
 @end
