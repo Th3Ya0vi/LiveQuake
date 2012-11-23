@@ -11,6 +11,12 @@
 #import <MapKit/MapKit.h>
 
 @interface GeoEvent : NSObject <MKAnnotation, NSCoding>
+#pragma mark - TODO Add properties -> Keyed Archiving
+{
+	int depth;
+	NSString *url;
+	NSDate *eventTime;
+}
 
 @property(nonatomic, copy) NSString *place;
 @property(nonatomic, assign) int mag;
