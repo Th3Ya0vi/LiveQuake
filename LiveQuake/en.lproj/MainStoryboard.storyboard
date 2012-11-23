@@ -11,7 +11,28 @@
                     <view key="view" contentMode="scaleToFill" id="sLy-D1-Dpv">
                         <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PS2-39-sku">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="UKV-FH-fF4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            </textField>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" translatesAutoresizingMaskIntoConstraints="NO" id="MXn-Y1-O1X">
+                                <items>
+                                    <barButtonItem systemItem="save" id="wAY-KU-Yvv"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PS2-39-sku" firstAttribute="top" secondItem="sLy-D1-Dpv" secondAttribute="top" constant="58" id="Czg-7s-yz5"/>
+                            <constraint firstItem="MXn-Y1-O1X" firstAttribute="top" secondItem="sLy-D1-Dpv" secondAttribute="top" type="default" id="F70-i5-Ieg"/>
+                            <constraint firstAttribute="trailing" secondItem="PS2-39-sku" secondAttribute="trailing" constant="48" id="UGX-f3-Ljq"/>
+                            <constraint firstItem="MXn-Y1-O1X" firstAttribute="leading" secondItem="sLy-D1-Dpv" secondAttribute="leading" type="default" id="ngP-rf-K0L"/>
+                            <constraint firstItem="MXn-Y1-O1X" firstAttribute="trailing" secondItem="sLy-D1-Dpv" secondAttribute="trailing" type="default" id="yba-rO-Y3Y"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" id="IbW-uX-c4L"/>
                 </viewController>
@@ -115,7 +136,9 @@
                             <constraint firstItem="tvf-T1-U5f" firstAttribute="leading" secondItem="OwL-ec-YXb" secondAttribute="leading" type="default" id="fQ2-P5-SZ1"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="RQn-5y-ePI"/>
+                    <navigationItem key="navigationItem" id="RQn-5y-ePI">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="m3k-Wo-N0p"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="tvf-T1-U5f" id="lnE-I5-vIa"/>
                     </connections>
@@ -181,7 +204,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GeoEventsViewController.h"/>
             <relationships>
                 <relationship kind="action" name="button:"/>
-                <relationship kind="action" name="refersh:"/>
+                <relationship kind="action" name="refresh:"/>
                 <relationship kind="action" name="segmentChanged:"/>
                 <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
             </relationships>
