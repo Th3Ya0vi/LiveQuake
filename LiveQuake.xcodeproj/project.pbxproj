@@ -42,6 +42,10 @@
 		563745E61654379800C55FC9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 563745E51654379800C55FC9 /* CoreLocation.framework */; };
 		563745E8165437A000C55FC9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 563745E7165437A000C55FC9 /* MapKit.framework */; };
 		563745EB165437FE00C55FC9 /* EventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 563745EA165437FE00C55FC9 /* EventDetailViewController.m */; };
+		56591C291660058600ACE7E6 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56591C281660058600ACE7E6 /* InfoViewController.m */; };
+		56591C2C16600C0800ACE7E6 /* 20-gear2.png in Resources */ = {isa = PBXBuildFile; fileRef = 56591C2B16600C0800ACE7E6 /* 20-gear2.png */; };
+		56591C2E16600E2100ACE7E6 /* info_24.png in Resources */ = {isa = PBXBuildFile; fileRef = 56591C2D16600E2100ACE7E6 /* info_24.png */; };
+		56591C3116600F4F00ACE7E6 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56591C3016600F4F00ACE7E6 /* SettingsViewController.m */; };
 		566EDFFE165ACAE5000A4D6C /* LocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 566EDFFD165ACAE5000A4D6C /* LocationHelper.m */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +118,12 @@
 		563745E7165437A000C55FC9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		563745E9165437FE00C55FC9 /* EventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventDetailViewController.h; path = ../../../../Dropbox/TestOne/EventDetailViewController.h; sourceTree = "<group>"; };
 		563745EA165437FE00C55FC9 /* EventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventDetailViewController.m; path = ../../../../Dropbox/TestOne/EventDetailViewController.m; sourceTree = "<group>"; };
+		56591C271660058600ACE7E6 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		56591C281660058600ACE7E6 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		56591C2B16600C0800ACE7E6 /* 20-gear2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "20-gear2.png"; sourceTree = "<group>"; };
+		56591C2D16600E2100ACE7E6 /* info_24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info_24.png; sourceTree = "<group>"; };
+		56591C2F16600F4F00ACE7E6 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		56591C3016600F4F00ACE7E6 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		566EDFFC165ACAE5000A4D6C /* LocationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationHelper.h; sourceTree = "<group>"; };
 		566EDFFD165ACAE5000A4D6C /* LocationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -181,6 +191,8 @@
 		563745841654332400C55FC9 /* LiveQuake */ = {
 			isa = PBXGroup;
 			children = (
+				56591C2D16600E2100ACE7E6 /* info_24.png */,
+				56591C2B16600C0800ACE7E6 /* 20-gear2.png */,
 				563745B91654360E00C55FC9 /* GeoEvent.h */,
 				5635F82E165EC96700088C43 /* UserSettings.h */,
 				5635F82F165EC96700088C43 /* UserSettings.m */,
@@ -198,6 +210,10 @@
 				5637458D1654332400C55FC9 /* AppDelegate.h */,
 				5637458E1654332400C55FC9 /* AppDelegate.m */,
 				563745961654332400C55FC9 /* MainStoryboard.storyboard */,
+				56591C2F16600F4F00ACE7E6 /* SettingsViewController.h */,
+				56591C3016600F4F00ACE7E6 /* SettingsViewController.m */,
+				56591C271660058600ACE7E6 /* InfoViewController.h */,
+				56591C281660058600ACE7E6 /* InfoViewController.m */,
 				563745991654332400C55FC9 /* ViewController.h */,
 				5637459A1654332400C55FC9 /* ViewController.m */,
 				563745851654332400C55FC9 /* Supporting Files */,
@@ -351,6 +367,8 @@
 				563745951654332400C55FC9 /* Default-568h@2x.png in Resources */,
 				563745981654332400C55FC9 /* MainStoryboard.storyboard in Resources */,
 				56131B5C165D686400706D4C /* iPhoneIcon_Small.png in Resources */,
+				56591C2C16600C0800ACE7E6 /* 20-gear2.png in Resources */,
+				56591C2E16600E2100ACE7E6 /* info_24.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +423,8 @@
 				563745EB165437FE00C55FC9 /* EventDetailViewController.m in Sources */,
 				566EDFFE165ACAE5000A4D6C /* LocationHelper.m in Sources */,
 				5635F830165EC96700088C43 /* UserSettings.m in Sources */,
+				56591C291660058600ACE7E6 /* InfoViewController.m in Sources */,
+				56591C3116600F4F00ACE7E6 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

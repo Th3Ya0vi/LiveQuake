@@ -15,6 +15,9 @@
 @synthesize place=_place;
 @synthesize mag=_mag;
 @synthesize coordinate=_coordinate;
+@synthesize depth = _depth;
+@synthesize url = _url;
+@synthesize eventTime = _eventTime;
 
 -(id)initWithPlace:(NSString*) place magnitude:(int) mag longitude:(float) longitude andLatitude:(float) latitude {
     if (self = [super init]){
@@ -25,6 +28,8 @@
     return self;
 }
 
+// TODO: Use UserSettings
+
 -(BOOL)isNearMe
 {
     return [LocationHelper distanceBetweenLocation:_coordinate andLocation:[Predicates getOne].currentLocation.coordinate] < 100;
@@ -32,7 +37,7 @@
 
 -(BOOL)isRecent
 {
-    return YES;
+    return [self.eventTime timeIntervalSinceNow] < (60 * 30);
 }
 
 -(BOOL)hasAtLeastMagnitude
@@ -51,6 +56,9 @@
     [encoder encodeInt:self.mag forKey:@"mag"];
     [encoder encodeFloat:self.coordinate.latitude forKey:@"latitude"];
     [encoder encodeFloat:self.coordinate.longitude forKey:@"longitude"];
+    [encoder encodeFloat:self.depth forKey:@"depth"];
+    [encoder encodeObject:self.url forKey:@"url"];
+    [encoder encodeObject:self.eventTime forKey:@"eventTime"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder
@@ -62,6 +70,9 @@
         float latitude = [decoder decodeFloatForKey:@"latitude"];
         float longitude = [decoder decodeFloatForKey:@"longitude"];
         _coordinate = CLLocationCoordinate2DMake(latitude, longitude);
+        self.depth = [decoder decodeFloatForKey:@"depth"];
+        self.url = [decoder decodeObjectForKey:@"url"];
+        self.eventTime = [decoder decodeObjectForKey:@"eventTime"];
     }
     return self;
 }
