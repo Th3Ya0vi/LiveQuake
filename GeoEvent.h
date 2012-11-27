@@ -25,4 +25,6 @@
 -(BOOL)isRecent;
 -(BOOL)hasAtLeastMagnitude;
 
+-(NSString*)displayTime;
+
 @end

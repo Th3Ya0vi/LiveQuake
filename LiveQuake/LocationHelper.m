@@ -23,7 +23,7 @@
     d = (1.852 * 60.0 * ((d/pi)*180)) / 1.609344;
     NSLog(@"distance is: %f", d);
     
-    return d;
+    return fabs(d);
 } //distanceBetweenLocation:andLocation:
 
 @end

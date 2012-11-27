@@ -12,7 +12,7 @@
 //#define USGS_URL @"http://earthquake.usgs.gov/earthquakes/feed/geojson/all/hour"
 #define USGS_URL @"http://earthquake.usgs.gov/earthquakes/feed/geojson/2.5/day"
 
-@interface USGSMonitor : NSObject
+@interface USGSMonitor : NSObject <NSXMLParserDelegate>
 + (void) startMonitor;
 + (void) stopMonitor;
 @end

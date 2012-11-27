@@ -12,6 +12,7 @@
 
 @synthesize placeLabel;
 @synthesize magnitudeLabel;
+@synthesize eventTimeLabel = _eventTimeLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

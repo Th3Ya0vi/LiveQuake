@@ -9,6 +9,7 @@
 #import "GeoEvent.h"
 #import "Predicates.h"
 #import "LocationHelper.h"
+#import "NSDate-Utilities.h"
 
 @implementation GeoEvent
 
@@ -32,7 +33,7 @@
 
 -(BOOL)isNearMe
 {
-    return [LocationHelper distanceBetweenLocation:_coordinate andLocation:[Predicates getOne].currentLocation.coordinate] < 100;
+    return [LocationHelper distanceBetweenLocation:_coordinate andLocation:[Predicates getOne].currentLocation.coordinate] < 1000;
 }
 
 -(BOOL)isRecent
@@ -45,6 +46,21 @@
     return (self.mag >= 4);
 }
 
+-(NSString*)displayTime
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    if ([self.eventTime isToday]){
+        [dateFormatter setDateFormat:@"HH:mm:ss"];
+        return [dateFormatter stringFromDate:self.eventTime];
+    }
+    else if ([self.eventTime isYesterday]){
+        [dateFormatter setDateFormat:@"HH:mm:ss"];
+        return [NSString stringWithFormat:@"yesterday %@", [dateFormatter stringFromDate:self.eventTime]];
+    }
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    // [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
+    return [dateFormatter stringFromDate:self.eventTime];
+}
 
 //===========================================================
 //  Keyed Archiving

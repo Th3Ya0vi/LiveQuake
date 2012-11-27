@@ -12,6 +12,10 @@
 #import "GeoEventCell.h"
 #import "EventDetailViewController.h"
 #import "Predicates.h"
+#import <QuartzCore/QuartzCore.h>
+#import "NSDate-Utilities.h"
+#import "Connectivity.h"
+#import <SystemConfiguration/SystemConfiguration.h>
 
 @interface GeoEventsViewController ()
 
@@ -41,6 +45,11 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    // TODO: Remember to remove observer
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(myAppWillEnterForeground)
+                                                 name:UIApplicationWillEnterForegroundNotification object:nil];
+    
+    
     noUpdates = 0;
     locationMgr = [[CLLocationManager alloc] init];
     locationMgr.delegate = self;
@@ -50,11 +59,28 @@
     [USGSMonitor startMonitor];
 }
 
+-(void)myAppWillEnterForeground
+{
+    networkConnected = [UIDevice networkConnected];
+}
+
+//===========================================================
+// - (void)viewWillAppear:(BOOL)animated
+//
+//===========================================================
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSLog(@"viewWillAppear networkConnected: %i", networkConnected);
+    networkConnected = [UIDevice networkConnected];
+    
+} //viewWillAppear:
+
+
 -(void)feedUpdate:(NSNotification*)notification{
     NSLog(@"feedUpdate");
     NSDictionary *dict = notification.object;
     NSMutableArray *arr = [dict objectForKey:@"events"];
-    NSDate *date = [dict objectForKey:@"date"];
+    lastUpdate = [dict objectForKey:@"date"];
     if(arr!=nil){
         nonFilteredGeoEvents = arr;
         [self applyPredicate];
@@ -110,15 +136,29 @@
     //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     // FIXME: iOS 6
     GeoEventCell *cell = (GeoEventCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+
+#pragma mark - Cell configuration
     // Configure the cell...
     
     GeoEvent *geoEvent = [self.geoEvents objectAtIndex:indexPath.row];
     cell.placeLabel.text = geoEvent.place;
+    cell.magnitudeLabel.layer.cornerRadius = 8;
     cell.magnitudeLabel.text = [NSString stringWithFormat:@"%d", geoEvent.mag];
     cell.magnitudeLabel.textColor = [UIColor blackColor]; // default
-    if (geoEvent.mag >=2)
-        cell.magnitudeLabel.textColor = [UIColor blueColor];
+    if (geoEvent.mag >=5)
+        cell.magnitudeLabel.textColor = [UIColor magentaColor];
+    else if (geoEvent.mag >=4)
+        cell.magnitudeLabel.textColor = [UIColor redColor];
+    else if (geoEvent.mag >=3)
+        cell.magnitudeLabel.textColor = [UIColor yellowColor];
+    else if (geoEvent.mag >=2)
+        cell.magnitudeLabel.textColor = [UIColor greenColor];
+    
+    cell.eventTimeLabel.text = [geoEvent displayTime];
+    if ([geoEvent.eventTime isToday])
+        cell.eventTimeLabel.textColor = [UIColor blueColor];
+    else
+        cell.eventTimeLabel.textColor = [UIColor blackColor]; // default
     return cell;
 }
 
@@ -173,6 +213,26 @@
     return YES;
 }
 */
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    // Just return nil to avoid displaying the header
+    if (geoEvents != nil){
+        int cnt = geoEvents.count;
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        NSString *intString = [NSString stringWithFormat:@"#events %d %@", cnt, [dateFormatter stringFromDate:lastUpdate]];
+        return intString;
+    }
+    else
+        return nil;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    if (networkConnected)
+        return nil;
+    else return @"network disconnected";;
+} //tableView:titleForFooterInSection:
 
 #pragma mark - Table view delegate
 

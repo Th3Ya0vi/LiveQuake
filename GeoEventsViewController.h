@@ -14,6 +14,8 @@
     CLLocationManager *locationMgr;
     NSUInteger			noUpdates;
     NSMutableArray *nonFilteredGeoEvents;
+    NSDate *lastUpdate;
+    BOOL networkConnected;
 }
 
 @property (nonatomic, strong) NSMutableArray *geoEvents;

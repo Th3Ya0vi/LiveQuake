@@ -8,7 +8,10 @@
 
 #import "USGSMonitor.h"
 #import "AFJSONRequestOperation.h"
+#import "AFXMLRequestOperation.h"
 #import "GeoEvent.h"
+#import "USGSParser.h"
+#import "EMSCXmlParserDelegate.h"
 #import <objc/runtime.h>
 
 static NSThread *monitor    = NULL;
@@ -44,6 +47,20 @@ static NSString *fileName   = NULL;
             }
         }
         
+#pragma mark - EMSC request
+        NSURLRequest *emscRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.emsc-csem.org/service/rss/rss.php?typ=emsc"]];
+        AFXMLRequestOperation *xmlOperation = [AFXMLRequestOperation XMLParserRequestOperationWithRequest:emscRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSXMLParser *xmlParser) {
+            NSLog(@"EMSC operation");
+            xmlParser.delegate = [EMSCXmlParserDelegate sharedEMSCXmlParserDelegate];
+            BOOL parsingResult = [xmlParser parse];
+            NSLog(@"parsingResult: %i", parsingResult);
+        }  failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, NSXMLParser *XMLParser){
+            NSLog(@"EMSC failure %@", [error debugDescription]);
+        }];
+        
+        [xmlOperation start];
+        
+#pragma mark - USGS request
         [UIApplication sharedApplication].networkActivityIndicatorVisible = true;
         NSURL *url = [NSURL URLWithString:USGS_URL];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -52,7 +69,7 @@ static NSString *fileName   = NULL;
             [UIApplication sharedApplication].networkActivityIndicatorVisible = false;
             NSLog(@"%@", [NSString stringWithCString:class_getName([JSON class]) encoding:NSUTF8StringEncoding]);
             
-            NSArray  *parsedEvents = [self parseUSGS:JSON];
+           NSArray  *parsedEvents = [USGSParser parseEvents:JSON];
             
             if(parsedEvents!= nil){
                 geoEvents = parsedEvents;
@@ -92,57 +109,6 @@ static NSString *fileName   = NULL;
         [monitor cancel];
         monitor = NULL;
     }
-}
-
-#pragma mark - USGS Parser
-
-+(NSArray*)parseUSGS:(id)JSON{
-	if([JSON respondsToSelector:@selector(objectForKey:)]){
-		id innerJSON = [JSON objectForKey:@"features"];
-		// Check that we have an NSArray
-		NSLog(@"%@", [NSString stringWithCString:class_getName([innerJSON class]) encoding:NSUTF8StringEncoding]);
-		if ([innerJSON isKindOfClass:[NSArray class]]){
-			NSArray *places = [JSON valueForKeyPath:@"features.properties.place"];
-			NSLog(@"Places: %@", places);
-			NSMutableArray *mutableItems = [NSMutableArray arrayWithCapacity:[innerJSON count]];
-			for (NSDictionary *attributes in innerJSON) {
-				//NSLog(@"Attribute: %@", attributes);
-				NSLog(@"coordinates: %@", [attributes valueForKeyPath: @"geometry.coordinates"]);
-				NSArray *coordinates = [attributes valueForKeyPath: @"geometry.coordinates"];
-				float longitude = [[coordinates objectAtIndex:0] floatValue];
-				float latitude = [[coordinates objectAtIndex:1] floatValue];
-				float depth = [[coordinates objectAtIndex:2] floatValue];
-				NSLog(@"longitude: %f", longitude);
-				NSLog(@"latitude: %f", latitude);
-				NSLog(@"depth: %f", depth);
-				
-				NSString *place = [attributes valueForKeyPath: @"properties.place"];
-				NSLog(@"place: %@", place);
-				NSLog(@"magnitude: %@", [attributes valueForKeyPath: @"properties.mag"]);
-				int mag = [[attributes valueForKeyPath: @"properties.mag"] intValue];
-				
-				GeoEvent *event = [[GeoEvent alloc] initWithPlace: place magnitude:mag longitude:longitude andLatitude:latitude];
-				event.mag = mag;
-				event.depth = depth;
-                event.url = [attributes valueForKeyPath: @"properties.url"];
-                
-                NSString *eventTime = [attributes valueForKeyPath: @"properties.time"];
-                // (Step 1) Convert event time to SECONDS since 1970
-                NSTimeInterval seconds = [eventTime doubleValue];
-                NSLog (@"Epoch time %@ equates to %qi seconds since 1970", eventTime, (long long) seconds);
-                
-                // (Step 2) Create NSDate object
-                NSDate *epochNSDate = [[NSDate alloc] initWithTimeIntervalSince1970:seconds];
-                NSLog (@"Epoch time %@ equates to UTC %@", eventTime, epochNSDate);
-                
-                event.eventTime = epochNSDate;
-                
-				[mutableItems addObject:event];
-			}
-			return mutableItems;
-		}
-	}
-	return nil;
 }
 
 @end
